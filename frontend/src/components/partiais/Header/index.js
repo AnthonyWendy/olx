@@ -2,7 +2,11 @@ import React from 'react';
 import { HeaderArea} from './styled';
 import { Link } from 'react-router-dom';
 
+import { isLogged } from '../../../helpers/OlxAPI';
+
 const Header = () => {
+    let logged = isLogged();
+
     return (
         <HeaderArea>
             <div className="container">
@@ -13,15 +17,31 @@ const Header = () => {
                 </div>
                 <nav>
                     <ul>
-                        <li>
-                            <Link to="">Cadastre-se</Link>
-                        </li>
-                        <li>
-                            <Link to="">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="" className="button">Anúncie aqui</Link>
-                        </li>
+                        {logged && 
+                            <>
+                                <li>
+                                    <Link to="my-accounte">Minha Conta</Link>
+                                </li>
+                                <li>
+                                    <Link to="/logout">Sair</Link>
+                                </li>                            
+                                <li>
+                                    <Link to="post-an-ad" className="button">Anúncie aqui</Link>
+                                </li>
+                            </>
+                        }
+
+                        {!logged &&
+                            <>
+                            <li>
+                                <Link to="singup">Cadastre-se</Link>
+                            </li>
+                            <li>
+                                <Link to="/singin">Login</Link>
+                            </li>
+                            </>
+                        }
+
                     </ul>
                 </nav>
             </div>
