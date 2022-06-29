@@ -1,8 +1,8 @@
 const OlxAPI = {
     login:async (email, password) => {
 
-        return {};
+        return {error: 'Cadastro incompleto.'};
     }
 };
 
-export default () => OlxApi;
+export default () => OlxAPI;
