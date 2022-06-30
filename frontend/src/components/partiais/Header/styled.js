@@ -11,7 +11,7 @@ export const HeaderArea = styled.div`
 
     .container{
         max-width: 1000px;
-        margin: 0vw 0vw 0vw 30vw;
+        margin: 0vw 0vw 15vw 15vw;
         display: flex;
 
         .logo{
@@ -43,10 +43,13 @@ export const HeaderArea = styled.div`
             margin-left: 20px;
             margin-right: 20px;
 
-            a{
+            a, button{
+                border: 0;
+                background: none;
                 color: #008;
                 font-size: 14px;
                 text-decoration: none;            
+                cursor:pointer;
 
                 &:hover{
                     color:#999;

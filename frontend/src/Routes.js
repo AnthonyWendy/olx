@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import SingIn from './pages/SingIn';
+import SignUp from './pages/SignUp';
 
 export default () => {
         return (
@@ -12,6 +13,8 @@ export default () => {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/sobre" element={<About/>}/>
                 <Route path="/singin" element={<SingIn/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
+                
                 <Route path="/*" element={<NotFound/>}/>
             </Routes>
         );
