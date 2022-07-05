@@ -9,7 +9,7 @@ import {PageContainer, PageTitle, ErrorMessage} from '../../components/MainCompe
 const Page = () => {
     const api = useApi();
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
     const [stateLoc, setStateLoc] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,11 +44,10 @@ const Page = () => {
             setError(json.error);
          }
          else{
-            doLogin(json.token);
+            doLogin(json.token, password);
             window.location.href = '/';
          }
 
-        // // setDisabled(false);
     };
 
     return (

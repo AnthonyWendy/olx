@@ -1,14 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { SearchArea,   PageArea} from './styled';
+import useApi from '../../helpers/OlxAPI'
+
+
+import { PageContainer } from '../../components/MainCompents'
 
 const Page = () => {
+    const api = useApi();
+
     return (
-        <div>
-            <h2>Pagina Home</h2>
-            <Link to="/About">Sobre</Link>
-        </div>
+
+        <>
+            <SearchArea>
+                <PageContainer>
+                    ...
+                </PageContainer>
+            </SearchArea>
+            <PageContainer>
+                <PageArea>
+                    ...
+                </PageArea>
+            </PageContainer>
+            
+        </>
 
     );
 }
-
 export default Page;
