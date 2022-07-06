@@ -70,6 +70,28 @@ const OlxAPI = {
             '/states'
         );
         return json.states;
+    },
+
+    getCategories: async () => {
+        const json = await apiFetchGet(
+            '/categories'
+        );
+
+        // Faz a substituição do localhost encontrada dentro do link, 
+        // pelo link da API do lab, percorre o vetor com o .map para fazer a substituição
+        json.categories.map((categoria) => {
+            categoria.img = BASEAPI+categoria.img.substring(21);
+        }); 
+            
+        return json.categories;
+    },
+
+    getAds: async (options) => {
+        const json = await apiFetchGet(
+            '/ads/list',
+            options
+        );
+        return json;
     }
 };
 
