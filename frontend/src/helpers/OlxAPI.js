@@ -88,9 +88,14 @@ const OlxAPI = {
 
     getAds: async (options) => {
         const json = await apiFetchGet(
-            '/ads/list',
+            '/ad/list',
             options
         );
+
+        json.ads.map((ads) => {
+            ads.image = BASEAPI+ads.image.substring(21);
+        });
+
         return json;
     }
 };

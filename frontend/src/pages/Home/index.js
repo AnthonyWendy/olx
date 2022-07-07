@@ -5,12 +5,14 @@ import useApi from '../../helpers/OlxAPI'
 
 
 import { PageContainer } from '../../components/MainCompents'
+import AdItem from '../../components/partiais/AdItem';
 
 const Page = () => {
     const api = useApi();
 
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [adList, setAdList] = useState([]);
 
     useEffect(()=>{
         const getStates = async () => {
@@ -27,7 +29,7 @@ const Page = () => {
             setCategories(cats);
         }
         getCategories();
-    });
+    }, []);
 
     useEffect(() => {
         const getRecentAds = async () => {
@@ -69,7 +71,21 @@ const Page = () => {
             </SearchArea>
             <PageContainer>
                 <PageArea>
-                    ...
+                    <h2>Ánuncios Recentes</h2>
+
+                    <div className="list">
+                        {adList.map((i, k) =>
+                            {return <AdItem key={k} data={i} />}
+                        )}
+                    </div>
+
+                    <Link to="/ads" className="tonho">Ver todos</Link>
+
+                    <hr/>
+
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since
+the 1500s,when an unknown printer tookagalley of type and scrambled it to makeatype specimen book.It has survived not only five centuries.
+but also the leap into electronic typesetting,remaining essentially unchanged.</p>
                 </PageArea>
             </PageContainer>
             
