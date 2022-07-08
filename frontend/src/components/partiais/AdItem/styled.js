@@ -10,10 +10,11 @@ import styled from 'styled-components';
    border-radius: 5px;
    color:#000;
    background-color: #FFF;
+   transition: all ease .2s;
 
    &:hover {
         border: 1px solid #CCC;
-
+        background-color: #FFF;
    }
 
    .itemImage img{
