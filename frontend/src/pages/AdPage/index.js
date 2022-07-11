@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { PageArea, Fake} from './styled';
 import useApi from '../../helpers/OlxAPI'
@@ -11,7 +11,16 @@ const Page = () => {
     const { id } = useParams();
 
     const [loading, setLoading] = useState(true);
-    const [adInfo, setAdIndo] = useState([]);
+    const [adInfo, setAdInfo] = useState([]);
+
+    useEffect(()=>{
+        const getAdInfo = async (id) => {
+            const json = await api.getAds(id, false);
+            setAdInfo(json);
+            setLoading(false);
+        }
+        getAdInfo(id);
+    }, [])
 
     return (
         <PageContainer>
@@ -19,26 +28,25 @@ const Page = () => {
                 <div className="leftSide">
                     <div className="box">
                         <div className="adImage">
-                            .idimage
+                            {loading && <Fake height={300}/>}
                         </div>
                         
                         <div className="adInfo">
                             <div className="adName">
-                                {loading && <Fake />}
+                                {loading && <Fake height={20}/>}
                             </div>
                             <div className="adDescription">
-                                .adDescription                            
+                                {loading && <Fake height={100} />}                            
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="rightSide">
-                    <div className="box">
-                        .rightBox1
+                    <div className="box box--padding">
+                        {loading && <Fake height={20}/>}
                     </div>
-                    <div className="box">
-                        .rightBox1
-
+                    <div className="box box--padding">
+                        {loading && <Fake height={50}/>}
                     </div>
                 </div>
             </PageArea>

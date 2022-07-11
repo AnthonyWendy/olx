@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Fake = styled.div`
     background-color: #DDD;
-    height: 
+    height: ${props=>props.height || 20}px;
 `;
 
 export const PageArea = styled.div`
@@ -17,9 +17,14 @@ margin-top: 20px;
 
 }
 
+.box--padding {
+    padding: 10px;
+}
+
 .leftSide {
     flex:1;
     margin-right: 20px;
+    width: 300px;
 
     .adImage{
 
@@ -29,7 +34,7 @@ margin-top: 20px;
         padding: 10px;
 
         .adName{
-
+            margin-bottom: 20px;
         }
 
         .adDescription{
@@ -40,6 +45,6 @@ margin-top: 20px;
 }
 
 .rightSide {
-    width: 50px;
+    width: 200px;
 }
 `;
