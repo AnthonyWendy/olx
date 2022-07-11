@@ -22,7 +22,18 @@ const Page = () => {
             setLoading(false);
         }
         getAdInfo(id);
-    }, [])
+    }, []);
+
+    const formatDate=(date)=>{
+        let cDate=new Date(date);
+
+        let months=['janeiro','fevereiro','março','abril','maio','junho','julho', 'agosto','setembro', 'outubro', 'novembro', 'dezembro'];
+        
+        let cDay = cDate.getDate();
+        let cMonth = cDate.getMonth();
+        let cYear = cDate.getFullYear();
+        return `${cDay} de ${months[cMonth]} de ${cYear}`;
+    }
 
     return (
         <PageContainer>
@@ -34,6 +45,8 @@ const Page = () => {
                             {adInfo.title && 
                                 <h2>{adInfo.title}</h2>    
                             }
+                            {adInfo.dateCreated && 
+                                <small>Criado em {formatDate(adInfo.dateCreated)}</small>}
                         </div>
                         
                         <div className="adInfo">

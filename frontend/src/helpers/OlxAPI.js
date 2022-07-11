@@ -100,12 +100,20 @@ const OlxAPI = {
         return json;
     },
 
-    getAd: async(id,other=false) => {
-        const json=await apiFetchGet(
-            '/ad/item',
-            {id,other}
-        );
-    }
+    getAd: async (id, other = false) => {
+        const json = await apiFetchGet("/ad/item", { id, other });
+
+        for (let i = 0; i < json.images.length; i++) {
+            json.images[i] = BASEAPI + json.images[i].substring(21);
+        }
+
+        json.others.map((ad) => {
+            ad.image = BASEAPI + ad.image.substring(21);
+        });
+
+        return json;
+    },
+    
 };
 
 export default () => OlxAPI;
