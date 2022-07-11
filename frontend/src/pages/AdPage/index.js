@@ -10,8 +10,10 @@ const Page = () => {
     const api = useApi();
     const { id } = useParams();
 
+    // console.log(json);
     const [loading, setLoading] = useState(true);
     const [adInfo, setAdInfo] = useState([]);
+
 
     useEffect(()=>{
         const getAdInfo = async (id) => {
@@ -29,6 +31,9 @@ const Page = () => {
                     <div className="box">
                         <div className="adImage">
                             {loading && <Fake height={300}/>}
+                            {adInfo.title && 
+                                <h2>{adInfo.title}</h2>    
+                            }
                         </div>
                         
                         <div className="adInfo">

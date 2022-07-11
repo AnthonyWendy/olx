@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import qs from 'qs';
 const BASEAPI = 'http://192.168.129.122:5000';
+// const BASEAPI = 'http://localhost:5000';
 
 const apiFetchPost = async (endpoint, body) => {
     
@@ -97,6 +98,13 @@ const OlxAPI = {
         });
 
         return json;
+    },
+
+    getAd: async(id,other=false) => {
+        const json=await apiFetchGet(
+            '/ad/item',
+            {id,other}
+        );
     }
 };
 
