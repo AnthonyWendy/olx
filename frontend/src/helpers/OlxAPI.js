@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import qs from 'qs';
-const BASEAPI = 'http://192.168.128.111:5000'
+const BASEAPI = 'http://192.168.129.122:5000';
 
 const apiFetchPost = async (endpoint, body) => {
     
