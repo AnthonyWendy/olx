@@ -14,7 +14,6 @@ margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 4px #999;
     margin-bottom: 20px;
-
 }
 
 .box--padding {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import { Slide } from 'react-slideshow-image';
 import { PageArea, Fake} from './styled';
 import useApi from '../../helpers/OlxAPI'
 
@@ -17,7 +18,7 @@ const Page = () => {
 
     useEffect(()=>{
         const getAdInfo = async (id) => {
-            const json = await api.getAds(id, false);
+            const json = await api.getAd(id, false);
             setAdInfo(json);
             setLoading(false);
         }
@@ -32,6 +33,7 @@ const Page = () => {
         let cDay = cDate.getDate();
         let cMonth = cDate.getMonth();
         let cYear = cDate.getFullYear();
+
         return `${cDay} de ${months[cMonth]} de ${cYear}`;
     }
 
@@ -42,19 +44,32 @@ const Page = () => {
                     <div className="box">
                         <div className="adImage">
                             {loading && <Fake height={300}/>}
-                            {adInfo.title && 
-                                <h2>{adInfo.title}</h2>    
+                            {adInfo.images && 
+                                <div className="slide">
+                                    {adInfo.images.map((img, k)=>
+                                        <div key={k} className="each-slide">
+                                            <img src={img} alt=""/>
+                                        </div>
+                                    )}
+                                </div>
                             }
-                            {adInfo.dateCreated && 
-                                <small>Criado em {formatDate(adInfo.dateCreated)}</small>}
                         </div>
-                        
                         <div className="adInfo">
                             <div className="adName">
                                 {loading && <Fake height={20}/>}
+
+                                {adInfo.title && <h2>{adInfo.title}</h2>}
+                                {adInfo.dateCreated && <small>Criado em {formatDate(adInfo.dateCreated)}</small>}
                             </div>
                             <div className="adDescription">
-                                {loading && <Fake height={100} />}                            
+                                {loading && <Fake height={100} />}        
+                                {adInfo.description}                    
+
+                                <hr/>
+
+                                {adInfo.views && 
+                                    <small>Visualizações : {adInfo.views}</small>
+                                }
                             </div>
                         </div>
                     </div>
