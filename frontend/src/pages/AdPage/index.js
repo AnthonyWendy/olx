@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import { Slide } from 'react-slideshow-image';
+import Carousel from 'react-material-ui-carousel';
 import { PageArea, Fake} from './styled';
 import useApi from '../../helpers/OlxAPI'
 
@@ -45,13 +45,25 @@ const Page = () => {
                         <div className="adImage">
                             {loading && <Fake height={300}/>}
                             {adInfo.images && 
-                                <div className="slide">
-                                    {adInfo.images.map((img, k)=>
-                                        <div key={k} className="each-slide">
-                                            <img src={img} alt=""/>
-                                        </div>
-                                    )}
-                                </div>
+
+                                {adInfo.images.map((img, k)=>
+                                    <Carousel key={k} IndicatoIcon={img}>
+                                    
+                                    </Carousel>
+                                )}
+                                
+
+
+
+
+
+                                // <div className="slide">
+                                //     {adInfo.images.map((img, k)=>
+                                //         <div key={k} className="each-slide">
+                                //             <img src={img} alt=""/>
+                                //         </div>
+                                //     )}
+                                // </div>
                             }
                         </div>
                         <div className="adInfo">
