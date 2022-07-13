@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Carousel from 'react-material-ui-carousel';
-import { PageArea, Fake} from './styled';
+import { PageArea, Fake, BreachChumb, OthersArea} from './styled';
 import useApi from '../../helpers/OlxAPI'
+import AdItem from '../../components/partiais/AdItem'
 
 
 import {PageContainer} from '../../components/MainCompents'
@@ -39,31 +40,33 @@ const Page = () => {
 
     return (
         <PageContainer>
+            {adInfo.category && 
+                <BreachChumb>
+                    Você está aqui:
+                    <Link to="/">Home</Link>
+                    /
+                    <Link to={`/ads?=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                    /
+                    {adInfo.title}            
+                </BreachChumb>
+            }
+
+            !===
             <PageArea>
                 <div className="leftSide">
                     <div className="box">
                         <div className="adImage">
                             {loading && <Fake height={300}/>}
                             {adInfo.images && 
-
-                                {adInfo.images.map((img, k)=>
-                                    <Carousel key={k} IndicatoIcon={img}>
-                                    
-                                    </Carousel>
-                                )}
-                                
-
-
-
-
-
-                                // <div className="slide">
-                                //     {adInfo.images.map((img, k)=>
-                                //         <div key={k} className="each-slide">
-                                //             <img src={img} alt=""/>
-                                //         </div>
-                                //     )}
-                                // </div>
+                                <Carousel indicators={false}>
+                                    {adInfo.images.map((img,k) =>
+                                        <div key={k} className="each-slide">
+                                            <img src={img} alt=""/>
+                                        </div>
+                                    )}
+                                </Carousel>
                             }
                         </div>
                         <div className="adInfo">
@@ -76,9 +79,7 @@ const Page = () => {
                             <div className="adDescription">
                                 {loading && <Fake height={100} />}        
                                 {adInfo.description}                    
-
                                 <hr/>
-
                                 {adInfo.views && 
                                     <small>Visualizações : {adInfo.views}</small>
                                 }
@@ -89,12 +90,39 @@ const Page = () => {
                 <div className="rightSide">
                     <div className="box box--padding">
                         {loading && <Fake height={20}/>}
+                        {adInfo.priceNegotiable && 
+                            "Preço Negociável"
+                        }
+                        {!adInfo.priceNegotiable && adInfo.price && 
+                            <div className="price">Preço: <span>R$ {adInfo.price}</span></div>
+                        }
                     </div>
-                    <div className="box box--padding">
-                        {loading && <Fake height={50}/>}
-                    </div>
+                    {loading && <Fake heigth={50}/>}
+                    {adInfo.userInfo &&
+                        <>
+                            <a href={`mailto:${adInfo.userInfo.email}`} target="_blank"  className="contactSellerLink">Fale com o vendedor</a>
+                            <div className="creatBy box box--padding">
+                                <strong>{adInfo.userInfo.name}</strong>
+                                <small>E-mail: {adInfo.userInfo.email}</small>
+                                <small>Estado: {adInfo.stateName}</small>
+                            </div>
+                        </>
+                    }
                 </div>
             </PageArea>
+
+            <OthersArea>
+                    {adInfo.others &&
+                        <>
+                            <h2>Outras ofertas do vendedor</h2>
+                            <div className="list">
+                                    {adInfo.others.map((i,k)=>
+                                        <AdItem key={k} data={i}/>
+                                    )}
+                            </div>
+                        </>
+                    }
+            </OthersArea>
         </PageContainer>
 
     );
