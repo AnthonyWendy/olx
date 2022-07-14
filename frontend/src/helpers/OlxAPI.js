@@ -3,6 +3,25 @@ import qs from 'qs';
 const BASEAPI = 'http://192.168.129.122:5000';
 // const BASEAPI = 'http://localhost:5000';
 
+const apiFetchFile = async (endpoint,body) =>{
+    if(!body.token){
+        let token = Cookies.get('token');
+        if(token) body.append("token", token)
+    }
+    const res = await fetch(BASEAPI+endpoint, {
+        method: 'POST',
+        body
+    });
+
+    const json = await res.json();
+
+    if(json.notallowed) {
+        window.location.href = '/singin';
+        return;
+    }
+    return json;
+}
+
 const apiFetchPost = async (endpoint, body) => {
     
     if(!body.token){
@@ -17,7 +36,7 @@ const apiFetchPost = async (endpoint, body) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body)      
     });
 
     const json = await res.json();
@@ -103,17 +122,29 @@ const OlxAPI = {
     getAd: async (id, other = false) => {
         const json = await apiFetchGet("/ad/item", { id, other });
 
-        for (let i = 0; i < json.images.length; i++) {
-            json.images[i] = BASEAPI + json.images[i].substring(21);
+
+        if(json.images) {
+            for (let i = 0; i < json.images.length; i++) {
+                json.images[i] = BASEAPI + json.images[i].substring(21);
+            }
+
+            json.others.map((ad) => {
+                ad.image = BASEAPI + ad.image.substring(21);
+            });
         }
 
-        json.others.map((ad) => {
-            ad.image = BASEAPI + ad.image.substring(21);
-        });
+        
 
         return json;
     },
-    
-};
 
+    addAd: async (fData) => {
+        const json = await apiFetchFile(
+            '/ad/add',
+            fData
+        );
+        return json;
+    },
+
+}        
 export default () => OlxAPI;

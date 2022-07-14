@@ -52,8 +52,6 @@ const Page = () => {
                     {adInfo.title}            
                 </BreachChumb>
             }
-
-            !===
             <PageArea>
                 <div className="leftSide">
                     <div className="box">
