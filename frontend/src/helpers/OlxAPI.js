@@ -30,6 +30,7 @@ const apiFetchPost = async (endpoint, body) => {
             body.token  = token;
         }
     }
+    
     const res = await fetch(BASEAPI+endpoint, {
         method: 'POST',
         headers: {

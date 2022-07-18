@@ -27,6 +27,7 @@ export default () => {
                 <Route path="/" element={<Private component={Home}/>}/>
                 <Route path="/sobre" element={<Private component={About}/>}/>
                 <Route path="/post-an-ad" element={<Private component={AddAd}/>}/>
+                <Route path="/my-account"/>
                 
             </Routes>
         );

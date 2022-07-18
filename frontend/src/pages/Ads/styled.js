@@ -22,6 +22,7 @@ margin-top: 20px;
         font-size: 15px;
         color: #000;
         padding: 10px;
+        background-color: #fff;
     }
 
     ul, li{
@@ -58,6 +59,52 @@ margin-top: 20px;
 
 .rightSide{
     flex:1;
+
+    h2{
+        margin-top:0;
+        font-size: 18px;
+    }
+
+    .listWarnig{
+        padding: 30px;
+        text-align: center;
+    }
+
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+     
+        .aditem{
+            width: 33%;
+        }
+    }
+
+    .pagination{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        
+        .pagItem{
+            width:30px;
+            height:30px;
+            border:1px solid#000;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size: 14px;
+            margin-right: 5px;
+            cursor: pointer;
+
+            &:hover{
+                border: 1px solid  #999;
+            }
+
+            &.active{
+                background-color: #9BBB3C;
+            }
+        }
+    }
+    
 }
 
 `;

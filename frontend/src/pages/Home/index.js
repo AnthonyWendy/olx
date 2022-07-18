@@ -48,7 +48,7 @@ const Page = () => {
             <SearchArea>
                 <PageContainer>
                     <div className="searchbox">
-                    <form>
+                    <form action="/ads" method='GET'>
                         <input type="text" name="q" placecholder="O que você procura?"/>
                         <select className="state">
                             {stateList.map((i,k) => 
@@ -61,7 +61,7 @@ const Page = () => {
                     </div>
                     <div className="categoryList">
                         {categories.map((i, k) =>
-                            <Link key={k} to="`ads?cat=${i.slug}`" className="categoryItem">
+                            <Link key={k} to={`ads?cat=${i.slug}`} className="categoryItem">
                                 <img src={i.img} alt=""/>
                                 <span>{i.name}</span>
                             </Link>
