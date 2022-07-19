@@ -34,7 +34,6 @@ const Page = () => {
                 {userInfo.name && (
                     <>
                         <br />
-
                         <div className="adList">
                             {userInfo.ads.length > 0 ? (
                                 <>
