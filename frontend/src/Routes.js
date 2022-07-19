@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import AdPage from './pages/AdPage';
 import AddAd from './pages/AddAd'
 import Ads from './pages/Ads';
+import Users from './pages/Users'
 
 export default () => {
         return (
@@ -27,7 +28,7 @@ export default () => {
                 <Route path="/" element={<Private component={Home}/>}/>
                 <Route path="/sobre" element={<Private component={About}/>}/>
                 <Route path="/post-an-ad" element={<Private component={AddAd}/>}/>
-                <Route path="/my-account"/>
+                <Route path="/my-account" element={<Private component={Users}/>}/>
                 
             </Routes>
         );

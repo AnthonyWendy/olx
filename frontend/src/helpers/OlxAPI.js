@@ -147,5 +147,14 @@ const OlxAPI = {
         return json;
     },
 
+    getUserInfo: async () => {
+        const json = await apiFetchGet("/user/me");
+        return json;
+    },
+
+    getApi: () => {
+        return BASEAPI;
+    },
+
 }        
 export default () => OlxAPI;

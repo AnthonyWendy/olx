@@ -25,7 +25,7 @@ const handleLogout = () => {
                         {logged && 
                             <>
                                 <li>
-                                    <Link to="my-accounte">Minha Conta</Link>
+                                    <Link to="my-account">Minha Conta</Link>
                                 </li>
                                 <li>
                                     <button onClick={handleLogout}>Sair</button>
