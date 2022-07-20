@@ -18,6 +18,7 @@ ads
 - _id
 - imagens [{url, default: true}]
 - idUser
+- state
 - dataCreated
 - title 
 - category
