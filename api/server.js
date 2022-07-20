@@ -8,8 +8,8 @@ const fileupload = require('express-fileupload');
 
 // Conexão com o banco de dados
 mongoose.connect(process.env.DATABASE, {
-    useNewUrlParsel: true,
-    useFindAndModify: false,
+    useNewUrlParser: true,
+    // useFindAndModify: false,
     useUnifiedTopology: true
 });
 mongoose.Promise = global.Promise; // O mogoose irá utilizar as promise locais
@@ -29,10 +29,10 @@ server.use(fileupload());
 server.use(express.static(__dirname+'/public'));//Link que permite o acesso à pasta public
 
 //Criação das rotas
-server.get('ping', (req, res)=>{
+server.get('/ping', (req, res)=>{
     res.json({pong: true});
 });
 
-server.listen(process.env.PORT, (=>{
+server.listen(process.env.PORT, ()=>{
     console.log(`Rodando no endereço ${process.env.BASE}`)
-}))
+})

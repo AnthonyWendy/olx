@@ -1,0 +1,28 @@
+users
+- id
+- name
+- email
+- status
+- passwordHash
+- token
+
+states
+- _id
+- name
+
+categories
+- _id
+- name
+
+ads 
+- _id
+- imagens [{url, default: true}]
+- idUser
+- dataCreated
+- title 
+- category
+- price
+- priceNegotible: true
+- description
+- views
+- status
