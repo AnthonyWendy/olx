@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const fileupload = require('express-fileupload');
 
+//Importando o router e nomeando ele
+const apiRoutes = require('./src/Router')
+
 // Conexão com o banco de dados
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
@@ -29,9 +32,7 @@ server.use(fileupload());
 server.use(express.static(__dirname+'/public'));//Link que permite o acesso à pasta public
 
 //Criação das rotas
-server.get('/ping', (req, res)=>{
-    res.json({pong: true});
-});
+server.use('/', apiRoutes);
 
 server.listen(process.env.PORT, ()=>{
     console.log(`Rodando no endereço ${process.env.BASE}`)
