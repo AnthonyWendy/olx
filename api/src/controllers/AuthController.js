@@ -1,8 +1,10 @@
 //Importando ferramentas para validação
 const { validationResult, matchedData} = require('express-validator');
 
+const mongoose = require('mongoose');
+
 //Importação do users
-const User = require('../models/Users')
+const User = require('../models/Users');
 
 // Responsável por controlar a autencação realizada na OLX
 module.exports = {
@@ -28,6 +30,24 @@ module.exports = {
             });
             return;
         }
+        
+        //Verificar se o estado informado existe
+        if(mongoose.Types.ObjectId.isValid(data.state)){
+            const stateItem = await State.findById(data.state);
+            if(!stateItem) {
+                res.json({
+                    error:  {state: {msg: 'Estado não existe.'}}
+                });
+                return;
+            }
+        } else { 
+            res.json({
+                error: {state: {msg: 'Código do estado está invalido.'}}});
+            return;
+        }
+
+
+
 
         res.json({tudocerto: true});
     }
