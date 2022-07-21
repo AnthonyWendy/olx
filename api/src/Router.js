@@ -17,6 +17,11 @@ router.get('/ping', (req, res)=>{
     res.json({pong: true});
 });
 
+//teste
+router.get('/isa', (req, res) => {
+    res.json({deu_boa: true});
+});
+
 //Para trazer os estados(SC, RS,...)
 router.get('/states', UserController.getStates);
 

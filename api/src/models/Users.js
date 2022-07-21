@@ -1,5 +1,5 @@
-const mongoose = require('mosfoose');
-mongoose.Promise = global.Promisse;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 
 // Criar Schema do banco de dados

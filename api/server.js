@@ -34,6 +34,7 @@ server.use(express.static(__dirname+'/public'));//Link que permite o acesso à p
 //Criação das rotas
 server.use('/', apiRoutes);
 
+
 server.listen(process.env.PORT, ()=>{
     console.log(`Rodando no endereço ${process.env.BASE}`)
 })
