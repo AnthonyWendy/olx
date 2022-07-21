@@ -7,21 +7,21 @@ module.exports = {
         name: {
             trim: true, //Vai retirar os espaços
             isLength: {options: {min: 2}}, //Vai dizer que o min de caracteres é 
-            errorMenssage: 'O seu nome precisa de no mínimo de caracteres.'
+            errorMessage: 'O seu nome precisa de no mínimo de caracteres.'
 
         },
-        Email: {
+        email: {
             isEmail: true,//verifica se é email
             normalizeEmail: true,//vai colocar o emaill prontinho para a inserção no banco
-            errorMenssage: 'E-mail inválido.'
+            errorMessage: 'E-mail inválido.'
         },
-        senha: {
+        password: {
             isLength:{ options: { min: 2} },
-            errorMenssage: 'Senha precisa ter pelo menos 2 caracteres.'
+            errorMessage: 'Senha precisa ter pelo menos 2 caracteres.'
         },
         state: {
             notEmpty: true,
-            errorMenssage: 'É necessário informar o estado.'
+            errorMessage: 'É necessário informar o estado.'
         }
     })
 
