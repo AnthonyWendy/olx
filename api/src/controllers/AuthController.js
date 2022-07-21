@@ -1,7 +1,13 @@
 //Importando ferramentas para validação
 const { validationResult, matchedData} = require('express-validator');
 
+//ferramenta para a criptografia
+const bcrypt = require('bcrypt');
+
+
 const mongoose = require('mongoose');
+
+const State = require('../models/State');
 
 //Importação do users
 const User = require('../models/Users');
@@ -42,13 +48,25 @@ module.exports = {
             }
         } else { 
             res.json({
-                error: {state: {msg: 'Código do estado está invalido.'}}});
+                error: {state: {msg: 'Código do estado está invalido.'}}
+            });
             return;
         }
 
+        //Construindo o hash da senha
+        const passwordHash = await bcrypt.hash(data.password, 10);//Encriptografia da senha
+        const payload = (Date.now() + Math.random()).toString();//Gerando um código
+        const token = await bcrypt.hash(payload, 10)
 
+        const newUser = new User({
+            name: data.name,
+            email: data.email,
+            passwordHash,
+            token,
+            state: data.state
+        });
+        await newUser.save();
 
-
-        res.json({tudocerto: true});
+        res.json({ token });
     }
 };
