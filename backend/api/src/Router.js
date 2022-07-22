@@ -7,6 +7,7 @@ const Auth = require('./middlewares/Auth');
 
 //Importa as regras para o cadastro do usuário
 const AuthValidator = require('./validators/AuthValidator')
+const UseValidator = require('./validators/AuthValidator')
 
 //Importação dos arquivos de controle
 const AuthController = require('./controllers/AuthController');
@@ -26,12 +27,12 @@ router.get('/isa', (req, res) => {
 router.get('/states', UserController.getStates);
 
 //Autenticação
-router.post('/user/signin', AuthController.signin, AuthController.signin);//Para fazer login
+router.post('/user/signin', AuthValidator.signin, AuthController.signin);//Para fazer login
 router.post('/user/signup', AuthValidator.signup, AuthController.signup);//para fazer cadastro
 
 //Usuário
 router.get('/user/me', Auth.private, UserController.info);//Para trazer informações do usuário
-router.put('/user/me', Auth.private, UserController.editAction);//Para Alterar informações do usuário
+router.put('/user/me', UseValidator.editAction, Auth.private, UserController.editAction);//Para Alterar informações do usuário
 
 //Categorias
 router.get('/categories', AdsController.getCategories);//Para trazer a lista de categoria
