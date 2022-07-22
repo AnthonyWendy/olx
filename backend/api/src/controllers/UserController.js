@@ -5,7 +5,7 @@ const { default: mongoose } = require('mongoose');
 const State = require('../models/State');
 const User = require('../models/Users');
 const Category = require('../models/Category');
-const Ad = require('../models/Ads')
+const Ad = require('../models/Ads');
 
 
 
