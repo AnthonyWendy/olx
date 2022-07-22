@@ -49,7 +49,7 @@ module.exports = {
 
         //Alterando o nome
         if(data.name) {
-            updates.name = name;
+            updates.name = data.name;
         }
 
         //Alterando o email
