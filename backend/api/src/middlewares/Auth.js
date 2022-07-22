@@ -6,7 +6,7 @@ module.exports = {
         if(!req.query.token && !req.body.toke){
             res.json({notallowed: true});
             return;
-        }
+        }ffffff
 
         let token = '';
         //Verificando de onde o token veio
