@@ -25,9 +25,7 @@ module.exports = {
         const data = matchedData(req);
 
         //Validandoo email
-        const user = await User.findOne({
-            email: data.email
-        });
+        const user = await User.findOne({email: data.email});
 
         if(!user){
             res.json({error:'Email e/ou senha incorretos!'});

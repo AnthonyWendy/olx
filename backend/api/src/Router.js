@@ -7,7 +7,7 @@ const Auth = require('./middlewares/Auth');
 
 //Importa as regras para o cadastro do usuário
 const AuthValidator = require('./validators/AuthValidator')
-const UseValidator = require('./validators/AuthValidator')
+const UserValidator = require('./validators/UserValidator')
 
 //Importação dos arquivos de controle
 const AuthController = require('./controllers/AuthController');
@@ -32,7 +32,7 @@ router.post('/user/signup', AuthValidator.signup, AuthController.signup);//para 
 
 //Usuário
 router.get('/user/me', Auth.private, UserController.info);//Para trazer informações do usuário
-router.put('/user/me', UseValidator.editAction, Auth.private, UserController.editAction);//Para Alterar informações do usuário
+router.put('/user/me', UserValidator.editAction, Auth.private, UserController.editAction);//Para Alterar informações do usuário
 
 //Categorias
 router.get('/categories', AdsController.getCategories);//Para trazer a lista de categoria

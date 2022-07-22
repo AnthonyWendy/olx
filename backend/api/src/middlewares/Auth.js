@@ -1,12 +1,14 @@
+const User = require('../models/Users')
+
 //Vericaficação de login
 
 module.exports = {
     private: async (req, res, next) => {
         //verificação da presença do token
-        if(!req.query.token && !req.body.toke){
+        if(!req.query.token && !req.body.token){
             res.json({notallowed: true});
             return;
-        }ffffff
+        }
 
         let token = '';
         //Verificando de onde o token veio
@@ -14,10 +16,11 @@ module.exports = {
             token = req.query.token;
         }
         if(req.body.token){
-            token.body.token;
+            token = req.body.token;
         }
         //Verificando se o token é fazio
         if(token == ''){
+            console.log(token, 'to')
             res.json({notallowed: true});
             return;
         }
@@ -29,6 +32,7 @@ module.exports = {
             res.json({notallowed: true});
             return;
         }
+        console.log(user, 'use ');
 
         next();
     }
